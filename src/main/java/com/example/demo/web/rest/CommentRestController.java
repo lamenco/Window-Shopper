@@ -27,7 +27,7 @@ public class CommentRestController {
         return ResponseEntity.ok(commentService.getAllComments(ModelEnum.KOMMERLING));
     }
 
-    @GetMapping("products/VIVAPLAST")
+    @GetMapping("products/VIVA")
     public  ResponseEntity<List<CommentViewModel>> getCommentsVIVA(){
         return  ResponseEntity.ok(commentService.getAllComments(ModelEnum.VIVAPLAST));
     }
