@@ -7,7 +7,7 @@
 <body>
 
 <header th:replace="fragments/fragment::nav"></header>
-  <main>
+<main>
   <section>
     <h3>Calculate window</h3>
 
@@ -16,19 +16,19 @@
           th:object="${window}"   id="window-register" >
       <label>Height:</label><br>
       <input  th:errorclass="bg-danger"
-             name="height" type="text" class="input-field" th:placeholder="*{height}">
+              name="height" type="text" class="input-field" th:placeholder="*{height}">
       <small th:if="${#fields.hasErrors('height')}" th:errors="*{height}"
              class="text-danger">Incorrect height!</small>
       <br>
       <label>Width:</label><br>
       <input  th:errorclass="bg-danger"
-             name="width" type="text" class="input-field" th:placeholder="*{width}"><br>
+              name="width" type="text" class="input-field" th:placeholder="*{width}"><br>
       <small th:if="${#fields.hasErrors('width')}" th:errors="*{width}"
              class="text-danger">Incorrect width!</small>
       <br>
       <label>Chamber:</label><br>
       <select  th:errorclass="bg-danger"
-              name="chamber" class="selector">
+               name="chamber" class="selector">
         <option   value="">- Select chamber type -</option>
         <option th:placeholder="*{chamber}"
                 th:each="ch : ${T(com.example.demo.models.enums.ChamberEnum).values()}"
@@ -59,7 +59,7 @@
       <button type="submit" class="submit-btn" value="Register">Add</button>
     </form>
   </section>
-  </main>
+</main>
 
 
 <footer th:replace="fragments/fragment::footer"></footer>

@@ -42,12 +42,13 @@ public class SecurityConfiguration {
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 // everyone can login and register
                         antMatchers("/").permitAll().
-                        antMatchers( "/users/login", "/users/register").anonymous().
-                        antMatchers( "offer/door/add","offer/window/add","/api/**").authenticated().
+                antMatchers("/statistics").hasRole("ADMIN").
+                antMatchers("/users/login", "/users/register").anonymous().
+                antMatchers("offer/door/add", "offer/window/add", "/api/**").authenticated().
 
                 // all other pages are available for logger in users
                         anyRequest().
-                        authenticated().
+                authenticated().
                 and().
                 // configuration of form login
                         formLogin().

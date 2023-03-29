@@ -7,6 +7,7 @@ import com.example.demo.models.entity.Window;
 import com.example.demo.models.user.WindowShopperUserDetails;
 import com.example.demo.service.OfferService;
 import com.example.demo.service.impl.WindowServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ import javax.validation.Valid;
 @RequestMapping("offer")
 public class OfferController {
     private final OfferService offerService;
+
     private final WindowServiceImpl windowService;
 
     public OfferController(OfferService offerService, WindowServiceImpl windowService) {

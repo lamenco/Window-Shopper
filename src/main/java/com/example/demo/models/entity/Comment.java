@@ -20,6 +20,7 @@ public class Comment extends BaseEntity {
     public Comment() {
     }
 
+
     public LocalDateTime getCreated() {
         return created;
     }

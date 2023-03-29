@@ -542,3 +542,7 @@ form small {
     resize: none;
 
 }
+.statistic{
+    background-image: none;
+    background-color: wheat;
+}

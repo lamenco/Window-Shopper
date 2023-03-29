@@ -9,6 +9,7 @@ public class CommentViewModel {
     }
 
 
+
     public CommentViewModel(String authorName, String text) {
         this.authorName = authorName;
         this.text = text;

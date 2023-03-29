@@ -5,6 +5,7 @@ import com.example.demo.models.dto.CommentMessageDTO;
 import com.example.demo.models.enums.ModelEnum;
 import com.example.demo.models.view.CommentViewModel;
 import com.example.demo.service.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +18,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class CommentRestController {
     private final CommentService commentService;
-
+    @Autowired
     public CommentRestController(CommentService commentService) {
         this.commentService = commentService;
     }
