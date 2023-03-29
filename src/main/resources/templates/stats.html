@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragment::head">
+
+
+</head>
+<body>
+<header th:replace="fragments/fragment::nav">
+
+</header>
+<main>
+    <section class="statistic">
+        <table border = "1">
+            <tr>
+                <td>Id</td>
+                <td>Action</td>
+                <td>User</td>
+                <td>Time</td>
+            </tr>
+
+            <tr th:each="l :${logs}" th:object="${l}" >
+                <td th:text="*{id}"></td>
+                <td th:text="*{action}"></td>
+                <td th:text="*{user}"></td>
+                <td th:text="*{dateTime}"></td>
+            </tr>
+
+        </table>
+
+    </section>
+</main>
+<footer th:replace="fragments/fragment::footer">
+
+</footer>
+</body>
+</html>
