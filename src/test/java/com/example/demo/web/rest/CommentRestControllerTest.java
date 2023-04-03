@@ -51,6 +51,7 @@ class CommentRestControllerTest {
 //    }
 
     @Test
+    @WithMockUser(username = "TestUser1")
     public void getAllComments_request_allCommentsReturned() throws Exception {
         when(commentService.getAllComments(ModelEnum.KOMMERLING)).thenReturn(List.of(
                 new CommentViewModel("TestUser1", "test1"),

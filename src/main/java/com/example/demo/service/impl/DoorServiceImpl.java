@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.models.entity.Door;
 import com.example.demo.models.view.DoorViewModel;
 import com.example.demo.models.view.WindowViewModel;
 import com.example.demo.repository.DoorOfferRepository;
@@ -21,13 +22,17 @@ public class DoorServiceImpl {
 
 
     public List<DoorViewModel> findDoorsByUsername(String username) {
-        return  doorOfferRepository.findByUserUsername(username).stream()
+        return doorOfferRepository.findByUserUsername(username).stream()
                 .map(door -> {
-                    DoorViewModel doorViewModel = modelMapper.map(door,DoorViewModel.class);
-                    doorViewModel.setImage(String.format("/images/%s.jpg",doorViewModel.getColor().name().toLowerCase()));
+                    DoorViewModel doorViewModel = modelMapper.map(door, DoorViewModel.class);
+                    doorViewModel.setImage(String.format("/images/%s.jpg", doorViewModel.getColor().name().toLowerCase()));
                     return doorViewModel;
                 }).collect(Collectors.toList());
     }
 
 
+    public Door findDoorsById(Long id) {
+        Door door = doorOfferRepository.findById(id).orElse(null);
+        return door;
+    }
 }

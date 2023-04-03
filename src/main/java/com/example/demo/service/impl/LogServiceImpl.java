@@ -48,4 +48,9 @@ public class LogServiceImpl implements LogService {
                     return logServiceModel;
                 }).collect(Collectors.toList());
     }
+
+    @Override
+    public void clear() {
+        logRepository.deleteAll();
+    }
 }

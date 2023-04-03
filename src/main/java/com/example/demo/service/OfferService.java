@@ -17,6 +17,9 @@ public interface OfferService {
 
     void deleteWindowById(Long id);
 
+     void calculatePriceWindow(WindowOfferDto windowOfferDto, Window window);
+     void calculatePriceDoor(DoorOfferDto doorOfferDto, Door door);
+
     void deleteDoorById(Long id);
 
     Door findDoorById(Long id);

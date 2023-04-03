@@ -54,7 +54,7 @@
                 <div id="price">Price:
                     <p th:text="*{d.price}"></p>
                 </div>
-                <button class="edit-btn" type="submit"> <a th:href="@{/offer/update/{id}(id=*{d.id})}">Edit</a></button>
+                <button class="edit-btn" type="submit"> <a th:href="@{/offer/updateDoor/{id}(id=*{d.id})}">Edit</a></button>
                 <form class="edit-btn" th:action="@{/cart/deleteDoor/{id}(id=*{d.id})}" th:method="delete"><input type="submit" value="Delete"></form>
                 <button class="edit-btn" type="submit"> <a th:href="@{cart/doorDetails/{id}(id=*{d.id})}">Details</a></button>
             </div>

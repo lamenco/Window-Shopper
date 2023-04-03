@@ -9,7 +9,7 @@
 <header th:replace="fragments/fragment::nav"></header>
 <main>
   <section>
-    <h3>Calculate window</h3>
+    <h3>Edit Window</h3>
 
     <form th:action="@{/offer/update/{id}(id=${window.id})}"
           th:method="PATCH"
@@ -54,9 +54,23 @@
       <small th:if="${#fields.hasErrors('color')}" th:errors="*{color}"
              class="text-danger">Incorrect color!</small>
       <br>
+      <label>Model:</label><br>
+      <select  th:errorclass="bg-danger"
+               name="model" class="selector">
+        <option   value="">- Select chamber type -</option>
+        <option th:placeholder="*{model}"
+                th:each="m : ${T(com.example.demo.models.enums.ModelEnum).values()}"
+                th:value="${m}" th:text="${m}"
+                th:selected="${m} == *{model}">Chamber Type
+        </option>
+
+      </select><br>
+      <small th:if="${#fields.hasErrors('model')}" th:errors="*{model}"
+             class="text-danger">Incorrect chamber!</small>
+      <br>
 
 
-      <button type="submit" class="submit-btn" value="Register">Add</button>
+      <button type="submit" class="submit-btn" value="Register">Update</button>
     </form>
   </section>
 </main>

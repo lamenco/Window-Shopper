@@ -49,6 +49,12 @@ public class OfferServiceImpl implements OfferService {
         window.setChamber(chamberService.findByChamber(windowOfferDto.getChamber()));
         window.setUser(userService.findByUsername(userDetails.getUsername()));
         window.setModel(modelService.findByModel(windowOfferDto.getModel()));
+        calculatePriceWindow(windowOfferDto, window);
+        windowOfferRepository.save(window);
+    }
+
+
+    public void calculatePriceWindow(WindowOfferDto windowOfferDto, Window window) {
         double calculatePrice = windowOfferDto.getHeight() * windowOfferDto.getWidth();
         if (windowOfferDto.getChamber().name().equals("FIVE_CHAMBER")) {
             calculatePrice *= 1.1;
@@ -62,7 +68,6 @@ public class OfferServiceImpl implements OfferService {
         }
         BigDecimal price = new BigDecimal(calculatePrice).setScale(2, RoundingMode.DOWN);
         window.setPrice(price);
-        windowOfferRepository.save(window);
     }
 
     @Override
@@ -73,11 +78,16 @@ public class OfferServiceImpl implements OfferService {
         door.setChamber(chamberService.findByChamber(doorOfferDto.getChamber()));
         door.setUser(userService.findByUsername(userDetails.getUsername()));
         door.setModel(modelService.findByModel(doorOfferDto.getModel()));
+        calculatePriceDoor(doorOfferDto, door);
+        doorOfferRepository.save(door);
+    }
+
+    public  void calculatePriceDoor(DoorOfferDto doorOfferDto, Door door) {
         double calculatePrice = doorOfferDto.getHeight() * doorOfferDto.getWidth();
         if (doorOfferDto.getChamber().name().equals("FIVE_CHAMBER")) {
             calculatePrice *= 1.1;
         } else {
-            calculatePrice *= 1.3;
+            calculatePrice *= 1.4;
         }
         if (doorOfferDto.getColor().name().equals("White")) {
             calculatePrice /= 60;
@@ -91,7 +101,6 @@ public class OfferServiceImpl implements OfferService {
         }
         BigDecimal price = new BigDecimal(calculatePrice).setScale(2, RoundingMode.HALF_UP);
         door.setPrice(price);
-        doorOfferRepository.save(door);
     }
 
     @Override
