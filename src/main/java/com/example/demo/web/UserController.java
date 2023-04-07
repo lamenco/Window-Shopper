@@ -57,8 +57,6 @@ public class UserController {
         }
         ;
         this.userService.register(userModel);
-
-
         return "redirect:/";
     }
 

@@ -23,16 +23,16 @@
             <th:block >
                 <li sec:authorize="hasRole('ADMIN')"><a href="/statistics">Admin</a></li>
             </th:block>
-            <li id="window"><a href="/">Home</a></li>
-            <li ><a href="/products">Products</a></li>
+            <li id="window"><a href="/" th:text="#{navbar_home}"></a></li>
+            <li ><a href="/products" th:text="#{navbar_products}"></a></li>
 
 
             <th:block sec:authorize="isAuthenticated()">
-                <li><a href="/offer/calculate">Calculator</a></li>
-                <li><a th:href="@{/cart}"><i class="fa-sharp fa-solid fa-cart-shopping"></i>Cart</a></li>
+                <li><a href="/offer/calculate" th:text="#{navbar_calculator}">Calculator</a></li>
+                <li><a th:href="@{/cart}" th:text="#{navbar_cart}"><i  class="fa-sharp fa-solid fa-cart-shopping"></i></a></li>
                 <li>
                     <form th:action="@{/users/logout}" th:method="post">
-                        <button type="submit" class="logout-btn">Logout</button>
+                        <button th:text="#{navbar_logout}" type="submit" class="logout-btn"></button>
                     </form>
                 </li>
             </th:block>

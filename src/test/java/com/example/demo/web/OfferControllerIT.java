@@ -7,6 +7,8 @@ import com.example.demo.models.enums.ModelEnum;
 import com.example.demo.models.enums.UserRoleEnum;
 import com.example.demo.util.TestDataUtils;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,23 +35,34 @@ class OfferControllerIT {
     @Autowired
     private TestDataUtils testDataUtils;
     private User testUser, testUser2;
-    private Window testOffer ;
+    private Window testOffer;
 
     @BeforeEach
     void setUp() {
-//        testUser = new User("admin", "Admin", "a@a", "123",
-//                List.of(new UserRole().setUserRole(UserRoleEnum.USER),
-//                        new UserRole().setUserRole(UserRoleEnum.ADMIN)));
-        testUser2= testDataUtils.createTestUser("pesho");
+        testUser2 = testDataUtils.createTestUser("pesho");
         testOffer = testDataUtils.createTestOffer(testUser2);
-
-
-
     }
+
 
     @AfterEach
     void tearDown() {
         testDataUtils.cleanUpDatabase();
+    }
+
+    ;
+
+    @Test
+    void testUserRegistration() throws Exception {
+        mockMvc.perform(post("/users/register")
+                        .param("username", "pesho2").
+                        param("email", "a@a2").
+                        param("fullName", "Pesho Petrov").
+                        param("password", "123").
+                        param("confirmPassword", "123")
+                        .with(csrf())).
+                andExpect(status().is3xxRedirection()).
+                andExpect(redirectedUrl("/"));
+
     }
 
 
@@ -64,7 +77,7 @@ class OfferControllerIT {
     @Test
     @WithMockUser(
             username = "pesho",
-            roles =  "USER"
+            roles = "USER"
     )
     void testLoginDelete() throws Exception {
 
@@ -74,6 +87,27 @@ class OfferControllerIT {
                 andExpect(redirectedUrl("/cart"));
     }
 
+    @Test
+    @WithMockUser(
+            username = "pesho",
+            roles = "USER"
+    )
+    void testThrowError403() throws Exception {
 
+        mockMvc.perform(get("/statistics")
+                        .with(csrf())).
+                andExpect(status().isForbidden());
+    }
+    @Test
+    @WithMockUser(
+            username = "pesho",
+            roles = "USER"
+    )
+    void testThrowError404() throws Exception {
+
+        mockMvc.perform(get("/cart/details/100")
+                        .with(csrf())).
+                andExpect(status().is4xxClientError());
+    }
 
 }

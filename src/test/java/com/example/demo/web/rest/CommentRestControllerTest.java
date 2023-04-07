@@ -45,10 +45,10 @@ class CommentRestControllerTest {
     @MockBean
     private UserService userService;
 
-//    @BeforeEach
-//    void setUp() {
-//        objectMapper = new ObjectMapper();
-//    }
+    @BeforeEach
+    void setUp() {
+        objectMapper = new ObjectMapper();
+    }
 
     @Test
     @WithMockUser(username = "TestUser1")
@@ -60,9 +60,9 @@ class CommentRestControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/products/Kommerling"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].authorName", is("TestUser1")))
-                .andExpect(jsonPath("$.[1].message", is("test1")))
-                .andExpect(jsonPath("$.[0].authorName", is("TestUser2")))
-                .andExpect(jsonPath("$.[1].message", is("test2")));
+                .andExpect(jsonPath("$.[0].text", is("test1")))
+                .andExpect(jsonPath("$.[1].authorName", is("TestUser2")))
+                .andExpect(jsonPath("$.[1].text", is("test2")));
 
     }
 
@@ -91,7 +91,7 @@ class CommentRestControllerTest {
                         .accept("application/json"))
                 .andExpect(status().is(201))
                 .andExpect(jsonPath("$.authorName", is("testUsername")))
-                .andExpect(jsonPath("$.message", is("This is comment #1")));
+                .andExpect(jsonPath("$.text", is("This is comment #1")));
 
 
     }

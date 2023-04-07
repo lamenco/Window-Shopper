@@ -28,7 +28,7 @@ public class UserRegistrationControllerIT {
                 andExpect(status().isOk()).
                 andExpect(view().name("register"));
     }
-    ;
+
 
     @Test
     void testLoginPageShown() throws Exception {
@@ -56,19 +56,7 @@ public class UserRegistrationControllerIT {
     }
     ;
 
-    @Test
-    void testUserRegistration() throws Exception {
-        mockMvc.perform(post("/users/register")
-                        .param("username", "pesho").
-                        param("email", "a@a").
-                        param("fullName", "Pesho Petrov").
-                        param("password", "123").
-                        param("confirmPassword", "123")
-                        .with(csrf())).
-                andExpect(status().is3xxRedirection()).
-                andExpect(redirectedUrl("/"));
 
-    }
 
     ;
 

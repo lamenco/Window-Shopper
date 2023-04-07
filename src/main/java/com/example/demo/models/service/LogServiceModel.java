@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 public class LogServiceModel {
     private Long id;
-
     private String user;
     private String action;
     private LocalDateTime dateTime;

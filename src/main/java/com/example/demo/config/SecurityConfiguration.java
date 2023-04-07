@@ -45,9 +45,7 @@ public class SecurityConfiguration {
                 antMatchers("/statistics").hasRole("ADMIN").
                 antMatchers("/users/login", "/users/register").anonymous().
                 antMatchers("offer/door/add", "offer/window/add", "/api/**").authenticated().
-
-                // all other pages are available for logger in users
-                        anyRequest().
+                anyRequest().
                 authenticated().
                 and().
                 // configuration of form login

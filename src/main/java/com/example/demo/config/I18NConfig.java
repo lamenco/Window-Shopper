@@ -30,4 +30,6 @@ public class I18NConfig {
         resourceBundleMessageSource.setDefaultEncoding("UTF-8");
         return resourceBundleMessageSource;
     }
+
+    //https://github.com/luchob/softuni-feb2023/issues/14
 }
